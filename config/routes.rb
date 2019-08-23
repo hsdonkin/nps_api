@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   # trying to come up with a good way to dynamically generate routes based on feature types from database, going full manual for now
 
+  match "*path", to: 'application#catch404', via: :all
+
   concern :api_base do
     resources :features
     get "/", to: "features#index"
