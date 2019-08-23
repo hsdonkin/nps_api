@@ -46,7 +46,7 @@ describe Feature, :type => :model do
   it 'will return only results of each type for generated scopes' do
     # have to delete the first feature type because there are blank entries ""
     # this gets a complete list of types to compare later
-    feature_types = Feature.types.delete(1)
+    feature_types = (Feature.types - [""] )
     scopes = Feature.generate_scopes
     test_pass = true
     scopes.each do |scope|

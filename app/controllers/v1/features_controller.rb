@@ -4,6 +4,8 @@ class FeaturesController < ApplicationController
   include JSON_Response
 
   def index
+    @features = Feature.all
+    json_response(@features)
   end
 
   def show
