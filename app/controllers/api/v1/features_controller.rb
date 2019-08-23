@@ -11,6 +11,8 @@ module Api
       end
 
       def show
+        @feature = Feature.find(params[:id])
+        json_response(@feature)
       end
     end
   end

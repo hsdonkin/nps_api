@@ -1,7 +1,7 @@
 class Feature < ApplicationRecord
 
-  after_initialize :name_repair
-  attr_accessor :name
+  after_initialize :name_repair, :generate_url
+  attr_accessor :name, :url
 
   # scope :campsites, -> {where("feature_type='Campsite'")}
 
@@ -68,6 +68,10 @@ class Feature < ApplicationRecord
       end
     end
     output
+  end
+
+  def generate_url
+    self.url = "http://localhost:3000/api/v1/features/#{self.id}"
   end
 
 
