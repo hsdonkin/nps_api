@@ -43,4 +43,11 @@ describe Feature, :type => :model do
     expect(failed_include).to eq(false)
   end
 
+  it 'will return only results of each type for generated scopes' do
+    scopes = Feature.generate_scopes
+    scopes.each do |scope|
+      result = Feature.public_send(scope)
+    end
+  end
+
 end # end of Feature model tests

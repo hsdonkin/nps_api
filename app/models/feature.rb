@@ -11,6 +11,9 @@ class Feature < ApplicationRecord
     types = Feature.types
     scopes = []
     types.each do |t|
+      
+      # have to explicitly state that feature_type is a new string object
+      feature_type = String.new(t)
       if t != "" #some types are blank oops
         # prettying the scopes a little bit
         t.gsub!(" ", "_")
@@ -18,14 +21,14 @@ class Feature < ApplicationRecord
         t.gsub!("/", "_")
         t.squeeze!("_")
 
-        scope ("type_#{t.downcase}").to_sym, -> {where("feature_type='#{t}'")}
+        scope ("type_#{t.downcase}").to_sym, -> {where("feature_type='#{feature_type}'")}
         puts "Created scope: type_#{t.downcase.delete(" ")}"
         scopes.push("type_#{t.downcase}".to_sym)
       end
     end
 
     return scopes
-    
+
   end
 
 
