@@ -6,7 +6,7 @@ module Api
       include JSON_Response
 
       def index
-        @features = Feature.all
+        @features = Feature.all.order(name: :asc)
         json_response(@features)
       end
 
@@ -14,6 +14,12 @@ module Api
         @feature = Feature.find(params[:id])
         json_response(@feature)
       end
+
+      def ranger_stations
+        @features = Feature.type_ranger_station
+        json_response(@features)
+      end
+
     end
   end
 end

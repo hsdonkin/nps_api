@@ -1,7 +1,10 @@
 class Feature < ApplicationRecord
+  @@scopes = []
 
-  after_initialize :name_repair, :generate_url
-  attr_accessor :name, :url
+
+  after_initialize :generate_url, :name_repair
+  attr_accessor :url
+  # found a weird thing were adding name as an attr accessor blanked out the names
 
   # scope :campsites, -> {where("feature_type='Campsite'")}
 
@@ -26,9 +29,13 @@ class Feature < ApplicationRecord
         scopes.push("type_#{t.downcase}".to_sym)
       end
     end
-
+    @@scopes = scopes
     return scopes
 
+  end
+
+  def self.scopes
+    @@scopes
   end
 
 
@@ -53,11 +60,6 @@ class Feature < ApplicationRecord
   #   end
   # end
 
-  # def prop_repair
-  #   binding.pry
-  #   self.prop = self.prop.delete("\\")
-  #   self.prop = self.prop.gsub('\\"', '')
-  # end
 
   def self.types
     features = Feature.all
@@ -67,7 +69,7 @@ class Feature < ApplicationRecord
         output.push(f.feature_type)
       end
     end
-    output
+    output - [""]
   end
 
   def generate_url
