@@ -17,6 +17,11 @@ module Api
         json_response(@feature)
       end
 
+      def random
+        @feature = Feature.random
+        json_response(@feature)
+      end
+
       def ranger_stations
         @features = Feature.type_ranger_station
         json_response(@features)

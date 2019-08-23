@@ -1,6 +1,7 @@
 class Feature < ApplicationRecord
   @@scopes = []
 
+  scope :random, -> {order(Arel.sql("RANDOM ()")).limit(1)}
 
   after_initialize :generate_url, :name_repair
   attr_accessor :url
