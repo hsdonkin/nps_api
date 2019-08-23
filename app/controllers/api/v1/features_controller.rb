@@ -48,8 +48,12 @@ module Api
       end
 
       def type
-        @features = Feature.public_send("type_#{params[:path]}")
-        json_response(@features)
+        if Feature.respond_to?("type_#{params[:path]}")
+          @features = Feature.public_send("type_#{params[:path]}")
+          json_response(@features)
+        else
+          json_response({:message => "Sorry! Feature type not found"})
+        end
       end
 
     end
