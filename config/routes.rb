@@ -16,6 +16,16 @@ Rails.application.routes.draw do
     get '/cave_entrances', to: 'features#cave_entrance'
     # get "/search/:query", to: "features#search"
     get '/ranger_stations', to: "features#ranger_stations"
+
+    get '/type/*path', to: "features#type"
+      # resources :features do
+      #   Feature.generate_scopes
+      #   Feature.scopes.each do |method|
+      #     method = method.to_s.gsub("type_", "")
+      #     get "#{method}", to: "features#{method}"
+      # end
+    # end
+
   end
 
 

@@ -47,6 +47,11 @@ module Api
         json_response(@features)
       end
 
+      def type
+        @features = Feature.public_send("type_#{params[:path]}")
+        json_response(@features)
+      end
+
     end
   end
 end
