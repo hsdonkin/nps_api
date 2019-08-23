@@ -1,4 +1,5 @@
 class Feature < ApplicationRecord
+
   after_initialize :name_repair
   attr_accessor :name
 
@@ -8,6 +9,7 @@ class Feature < ApplicationRecord
   # converts the string type into a symbol and creates a scope from it
   def self.generate_scopes
     types = Feature.types
+    scopes = []
     types.each do |t|
       if t != "" #some types are blank oops
         # prettying the scopes a little bit
@@ -15,12 +17,17 @@ class Feature < ApplicationRecord
         t.gsub!("-", "_")
         t.gsub!("/", "_")
         t.squeeze!("_")
-        
+
         scope ("type_#{t.downcase}").to_sym, -> {where("feature_type='#{t}'")}
         puts "Created scope: type_#{t.downcase.delete(" ")}"
+        scopes.push("type_#{t.downcase}".to_sym)
       end
     end
+
+    return scopes
+    
   end
+
 
   def name_repair
     if self.name == "" || self.name == nil
