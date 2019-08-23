@@ -1,24 +1,31 @@
-# README
+# National Parks Service Dataset API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+_Using a NPS GeoJSON dataset_
 
-Things you may want to cover:
+## Description
+Rails API created from a points of interest dataset by National Parks Service
 
-* Ruby version
+## Setup / Installation
+* Install Ruby & Rails
+* Launch API on localhost:3000 with command 'rails server'
+* Send GET requests to localhost:3000 via Postman or your favorite API test client
 
-* System dependencies
+## Available Endpoints
+* '/' => An index of all 11,000 entries in dataset
+*  '/campgrounds' => All campgrounds from the dataset
+*  '/ranger_stations' => All ranger stations from the dataset
+*  '/fishing' => All fishing sites from the dataset
+*  '/cave_entrances' => All cave entrances from the dataset
+*  '/lodges' => All lodges from dataset
+*  '/random' => A random site! What an adventure!
 
-* Configuration
+## Notable Functionality
+*  All database scopes are generated dynamically based on "feature_type" entries in dataset
 
-* Database creation
+## Notable Bugs
+* Tags property is currently stored as a string, pending a solution to convert it to an object
 
-* Database initialization
+### License
+_open source_
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+_Copyright (c) 2019 **Hugh Donkin**_

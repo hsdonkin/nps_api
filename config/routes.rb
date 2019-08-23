@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get "/campgrounds", to: "features#campgrounds"
     get "/lodges", to: "features#lodges"
     get '/fishing', to: 'features#fishing'
-    get '/cave_entrance', to: 'features#cave_entrance'
+    get '/cave_entrances', to: 'features#cave_entrance'
     # get "/search/:query", to: "features#search"
     get '/ranger_stations', to: "features#ranger_stations"
   end
