@@ -1,4 +1,5 @@
 class Feature < ApplicationRecord
+  after_initialize :name_repair
   attr_accessor :name
 
   scope :campsites, -> {where("feature_type='Campsite'")}

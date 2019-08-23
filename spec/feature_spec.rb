@@ -21,4 +21,11 @@ describe Feature, :type => :model do
     expect(feature.name).to eq("Unnamed #{feature.feature_type}")
   end
 
+  it "does not give a template name to named locations" do
+    feature = FactoryHugh.build(:feature)
+    original_name = feature.name
+    feature.name_repair
+    expect(feature.name).to eq(original_name)
+  end
+
 end # end of Feature model tests
