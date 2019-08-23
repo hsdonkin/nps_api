@@ -2,6 +2,8 @@ module Api
   module V1
     class FeaturesController < ApplicationController
       Feature.generate_scopes
+      # This is great and works surprisingly well
+      # all scopes are generated dynamically with this class method
 
       include JSON_Response
 
@@ -17,6 +19,26 @@ module Api
 
       def ranger_stations
         @features = Feature.type_ranger_station
+        json_response(@features)
+      end
+
+      def campgrounds
+        @features = Feature.type_campground
+        json_response(@features)
+      end
+
+      def lodges
+        @features = Feature.type_lodge
+        json_response(@features)
+      end
+
+      def fishing
+        @features = Feature.type_fishing
+        json_response(@features)
+      end
+
+      def cave_entrance
+        @features = Feature.type_cave_entrance
         json_response(@features)
       end
 
