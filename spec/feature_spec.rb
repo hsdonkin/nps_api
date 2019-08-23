@@ -44,10 +44,20 @@ describe Feature, :type => :model do
   end
 
   it 'will return only results of each type for generated scopes' do
+    # have to delete the first feature type because there are blank entries ""
+    # this gets a complete list of types to compare later
+    feature_types = Feature.types.delete(1)
     scopes = Feature.generate_scopes
+    test_pass = true
     scopes.each do |scope|
       result = Feature.public_send(scope)
+      result.each do |result|
+        if feature_types.include?(result.feature_type) == false
+          test_pass = false
+        end
+      end
     end
+    expect(test_pass).to eq(true)
   end
 
 end # end of Feature model tests
