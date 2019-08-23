@@ -42,6 +42,22 @@ class Feature < ApplicationRecord
     end
   end
 
+  def tags_to_hash
+    tags = self.tags
+    tags.gsub!(":", "_").delete!("\"").gsub!(",", "=>")
+    array = tags.split("=>")
+    array.each {|item| item.strip!}
+    hash = array.each_slice(2).to_h
+    self.tags = hash
+    binding.pry
+  end
+
+  # def prop_repair
+  #   binding.pry
+  #   self.prop = self.prop.delete("\\")
+  #   self.prop = self.prop.gsub('\\"', '')
+  # end
+
   def self.types
     features = Feature.all
     output = []
