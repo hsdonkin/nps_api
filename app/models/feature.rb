@@ -11,7 +11,7 @@ class Feature < ApplicationRecord
     types = Feature.types
     scopes = []
     types.each do |t|
-      
+
       # have to explicitly state that feature_type is a new string object
       feature_type = String.new(t)
       if t != "" #some types are blank oops
@@ -34,7 +34,11 @@ class Feature < ApplicationRecord
 
   def name_repair
     if self.name == "" || self.name == nil
-      self.name = "Unnamed #{self.feature_type}"
+      if self.feature_type != ""
+        self.name = "Unnamed #{self.feature_type}"
+      else
+        self.name = "Unnamed #{self.geometry_type}"
+      end
     end
   end
 
