@@ -18,9 +18,11 @@ Rails API created from a points of interest dataset by National Parks Service
 *  '/cave_entrances' => All cave entrances from the dataset
 *  '/lodges' => All lodges from dataset
 *  '/random' => A random site! What an adventure!
+* '/types/:type' => View all features that correspond to the type entered
 
 ## Notable Functionality
 *  All database scopes are generated dynamically based on "feature_type" entries in dataset
+* '/types' returns a custom JSON response with suggested routes to try
 
 ## Notable Bugs
 * Tags property is currently stored as a string, pending a solution to convert it to an object
