@@ -6,6 +6,7 @@ module Api
       # all scopes are generated dynamically with this class method
 
       include JSON_Response
+      require 'fuzzy_match'
 
       def index
         @features = Feature.all.order(name: :asc)
@@ -52,7 +53,9 @@ module Api
           @features = Feature.public_send("type_#{params[:path]}")
           json_response(@features)
         else
-          json_response({:message => "Sorry! Feature type not found"})
+          partial = FuzzyMatch.new(Feature.scopes).find(params[:path])
+          partial = partial.to_s.gsub!("type_", "")
+          json_response({:message => "Sorry! Feature type not found. Did you mean #{partial}?"})
         end
       end
 
