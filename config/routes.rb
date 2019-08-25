@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # trying to catch routing errors, but not working yet
   # match "*path", to: 'application#catch404', via: :all
 
+  get '/', to: 'api/v1/features#index'
+
   concern :api_base do
     resources :features
     get "/", to: "features#index"

@@ -22,6 +22,21 @@ describe Api::V1::FeaturesController, :type => :controller do
       end
       expect(attrs).not_to eq(false)
     end
-
   end
+
+  # can't convince my rescue tests to run, ideas?
+
+  # describe 'GET #show' do
+  #   before do
+  #     get :show
+  #     params[:id] = "20000"
+  #   end
+  #
+  #   it 'will rescue from record not found' do
+  #     response.status.should eql(404)
+  #     error = {"error": "Couldn't find Feature with 'id'=2000000"}
+  #     response.body.should eq (error.to_json)
+  #   end
+  # end
+
 end
