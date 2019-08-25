@@ -19,7 +19,7 @@ describe Feature, :type => :model do
   # end
 
   it "creates a template name for unnamed locations" do
-    feature = Feature.new(:name => "", :feature_type => "Campsite", :geometry_type => nil, :prop => nil, :tags => nil, :created => Time.now, :latitude => nil, :longitude => nil)
+    feature = Feature.new(:name => "", :feature_type => "Campsite", :geometry_type => nil, :tags => nil, :created => Time.now, :latitude => nil, :longitude => nil)
     feature.name_repair
     expect(feature.name).to eq("Unnamed #{feature.feature_type}")
   end
