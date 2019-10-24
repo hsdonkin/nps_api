@@ -7,6 +7,7 @@ Rails API created from a points of interest dataset by National Parks Service
 
 ## Setup / Installation
 * Install Ruby & Rails
+* Clone down repository, and import database backup via psql
 * Launch API on localhost:3000 with command 'rails server'
 * Send GET requests to localhost:3000 via Postman or your favorite API test client
 
